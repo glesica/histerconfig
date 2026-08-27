@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>org.hister.agent</string>
+
+    <!-- via /bin/sh so $HOME expands; launchd sets HOME for agents but
+         does not expand ~ or variables in plist paths. -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/sh</string>
+        <string>-c</string>
+        <string>exec "$HOME/.local/bin/hister" listen --config "$HOME/Library/Preferences/hister/config.yml" >> "$HOME/Library/Logs/hister.log" 2>&amp;1</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>ThrottleInterval</key>
+    <integer>10</integer>
+
+    <key>ProcessType</key>
+    <string>Adaptive</string>
+
+    <!-- indexing is CPU-hungry; keep it out of the way of foreground work -->
+    <key>Nice</key>
+    <integer>5</integer>
+</dict>
+</plist>
