@@ -2,7 +2,7 @@ app:
   directory: '~/Library/Application Support/hister'
   log_level: 'error'
   color_scheme: 'automatic'
-  search_url: 'https://duckduckgo.com/?q={query}'   # fallback when no local hit
+  search_url: 'https://kagi.com/search?q={query}' # fallback search
 
 server:
   address: '127.0.0.1:4433'
